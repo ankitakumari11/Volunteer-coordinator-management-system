@@ -1,0 +1,133 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #92bde7;
+    color: #485e74;
+    line-height: 1.5em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 1em;
+}
+
+.main {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+li {
+    list-style: none;
+
+}
+
+#title {
+    text-align: center;
+}
+
+#title span {
+    color: #fff;
+}
+
+#description {
+    text-align: center;
+    padding-top: 2em;
+}
+
+.container {
+    box-shadow: 0 0 20px 0 rgba(72, 94, 116, 0.7);
+}
+
+.container>* {
+    padding: 1em;
+}
+
+#survey-form {
+    background: #f9feff;
+}
+
+.f-form {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+#survey-form #name-label,
+#survey-form #email-label,
+#survey-form #number-label {
+    display: block;
+}
+
+#survey-form #name,
+#survey-form #email,
+#survey-form #number,
+#survey-form #submit,
+#survey-form textarea {
+    width: 100%;
+    padding: 1em;
+    border: 1px solid #c9e6ff;
+}
+
+#survey-form #dropdown {
+    width: 30%;
+    padding: 1em;
+    border: 1px solid #c9e6ff;
+}
+
+#survey-form button {
+    background: #c9e6ff;
+    border: none;
+    text-transform: capitalize;
+}
+
+#survey-form button:hover,
+.survey button:focus {
+    background: #92bde7;
+    color: #fff;
+    outline: 0;
+    transition: background-color 2s ease-out;
+}
+
+/*Larger Screen */
+
+@media(min-width: 700px) {
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        padding: 1em;
+
+    }
+
+    #survey-form #name,
+    #survey-form #email,
+    #survey-form #number,
+    #survey-form #submit,
+    #survey-form textarea {
+        width: 50%;
+        padding: 1em;
+        border: 1px solid #000;
+    }
+
+    #submit {
+        margin-top: 1em;
+    }
+
+    .container {
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .middle {
+        width: 70%;
+        margin-left: 25%;
+
+
+
+    }
+}
+
+@media(max-width: 700px) {
+    #survey-form #dropdown {
+        width: 65%;
+    }
+}

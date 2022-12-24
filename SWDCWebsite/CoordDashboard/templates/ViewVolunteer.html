@@ -1,0 +1,170 @@
+{% extends 'cdashboard.html' %}
+{% block ccontent %}
+{% load static %}
+
+<!-- Viewing data of {{volunteer_data.Name}} <br>
+Number = {{volunteer_data.contact_num}} <br>
+Email = {{volunteer_data.email}} <br>
+gender = {{volunteer_data.gender}} <br>
+activity = {{volunteer_data.activity}} <br>
+dept = {{volunteer_data.dept}} <br>
+academic_year = {{volunteer_data.academic_year}} <br>
+module = {{volunteer_data.module}} <br>
+div = {{volunteer_data.div}} <br>
+current_add = {{volunteer_data.current_add}} <br>
+prn = {{volunteer_data.prn}} <br>
+roll = {{volunteer_data.roll}} <br>
+contact_num = {{volunteer_data.contact_num}} <br>
+verified = {{volunteer_data.verified}} <br>
+submitted = {{volunteer_data.submitted}} <br>
+Objective_of_the_Activity = {{volunteer_data.Objective_of_the_Activity}} <br>
+Description_of_the_Activity ={{volunteer_data.Description_of_the_Activity}} <br>
+Benefits_to_Society = {{volunteer_data.Benefits_to_Society}} <br>
+Benefits_to_Self = {{volunteer_data.Benefits_to_Self}} <br>
+Learning_Experiences_challenges = {{volunteer_data.Learning_Experiences_challenges}} <br>
+How_did_it_help_you_to_shape_your_Empathy = {{volunteer_data.How_did_it_help_you_to_shape_your_Empathy}} <br>
+Cordinator = {{volunteer_data.Cordinator}} <br> -->
+
+
+
+
+
+
+<!-- survey form template -->
+
+
+
+
+
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "css/ViewVolunteer.css" %}'>
+    <title>Sign Up Form</title>
+</head>
+
+<body>
+
+    <form action="index.html" method="post">
+
+        <h1>Viewing data of {{volunteer_data.Name}}</h1>
+
+        <fieldset>
+
+            <!-- <legend><span class="number">1</span> Your basic info</legend> -->
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="user_name" value={{volunteer_data.Name}} fieldset disabled="disabled">
+
+            <label for="mail">Email:</label>
+            <input type="email" id="mail" name="user_email" value={{volunteer_data.email}} fieldset disabled="disabled">
+
+            <label for="name">Gender:</label>
+            <input type="text" id="name" name="user_name" value={{volunteer_data.gender}} fieldset disabled="disabled">
+
+            <label for="name">activity:</label>
+            <input type="text" id="name" name="user_name" value={{volunteer_data.activity}} fieldset
+                disabled="disabled">
+
+            <label for="name">dept:</label>
+            <input type="text" id="name" name="user_name" value={{volunteer_data.dept}} fieldset disabled="disabled">
+
+            <label for="name">academic_year:</label>
+            <input type="text" id="name" name="user_name" value={{volunteer_data.academic_year}} fieldset
+                disabled="disabled">
+
+            <label for="name">module:</label>
+            <input type="text" id="name" name="user_name" value={{volunteer_data.module}} fieldset disabled="disabled">
+
+
+            <label for="name">DIV:</label>
+            <input type="text" id="name" name="user_name" value={{volunteer_data.div}} fieldset disabled="disabled">
+            <!-- 
+            <label for="name">module:</label>
+            <input type="text" id="name" name="user_name" value={{volunteer_data.module}} fieldset disabled="disabled"> -->
+
+
+            <label for="name">Current_address</label>
+            <input type="text" id="name" name="user_name" value={{volunteer_data.current_add}} fieldset
+                disabled="disabled">
+
+
+            <label for="name">prn:</label>
+            <input type="text" id="name" name="user_name" value={{volunteer_data.prn}} fieldset disabled="disabled">
+
+
+
+            <label for="name">roll:</label>
+            <input type="text" id="name" name="user_name" value={{volunteer_data.roll}} fieldset disabled="disabled">
+
+
+            <label for="name">contact_num:</label>
+            <input type="text" id="name" name="user_name" value={{volunteer_data.contact_num}} fieldset
+                disabled="disabled">
+
+
+            <!-- <label for="name">module:</label>
+            <input type="text" id="name" name="user_name" value={{volunteer_data.verified}} fieldset
+                disabled="disabled"> -->
+
+            <label for="name">Objective_of_the_Activity:</label>
+            <input type="text" id="name" name="user_name" value={{volunteer_data.Objective_of_the_Activity}} fieldset
+                disabled="disabled">
+
+            <label for="name">Description_of_the_Activity:</label>
+            <input type="text" id="name" name="user_name" value={{volunteer_data.Description_of_the_Activity}} fieldset
+                disabled="disabled">
+
+
+            <label for="name">Benefits_to_Society:</label>
+            <input type="text" id="name" name="user_name" value={{volunteer_data.Benefits_to_Society}} fieldset
+                disabled="disabled">
+
+
+            <label for="name">Benefits_to_Self:</label>
+            <input type="text" id="name" name="user_name" value={{volunteer_data.Benefits_to_Self}} fieldset
+                disabled="disabled">
+
+
+            <label for="name">Learning_Experiences_challenges:</label>
+            <input type="text" id="name" name="user_name" value={{volunteer_data.Learning_Experiences_challenges}}
+                fieldset disabled="disabled">
+
+            <label for="name">How_did_it_help_you_to_shape_your_Empathy:</label>
+            <input type="text" id="name" name="user_name"
+                value={{volunteer_data.How_did_it_help_you_to_shape_your_Empathy}} fieldset disabled="disabled">
+
+            <label for="name">Cordinator:</label>
+            <input type="text" id="name" name="user_name" value={{volunteer_data.Cordinator}} fieldset
+                disabled="disabled">
+
+
+
+        </fieldset>
+        <!-- button not applied -->
+        <!-- <button type="submit">Sign Up</button> -->
+
+
+
+    </form>
+
+
+
+
+
+
+
+
+
+
+    <form action="{% url 'ApproveVolunteer' %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="number" value="{{volunteer_data.contact_num}}">
+        <input class="btn btn-sm btn-neutral" type="submit" value="Verify">
+    </form>
+</body>
+{% endblock ccontent %}

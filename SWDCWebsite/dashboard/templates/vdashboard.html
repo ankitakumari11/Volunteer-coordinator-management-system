@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./../static/css/volunteer/vdashboard.css">
+    <link rel="stylesheet" href='{% static "css/form/form.css" %}'>
+    <link rel="stylesheet" href='{% static "css/ViewVolunteer.css" %}'>
+</head>
+
+<body>
+    <!-- Dashboard -->
+    <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+        <!-- Vertical Navbar -->
+        <nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light bg-white border-bottom border-bottom-lg-0 border-end-lg"
+            id="navbarVertical">
+            <div class="container-fluid">
+                <!-- Toggler -->
+                <button class="navbar-toggler ms-n2" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Brand -->
+                <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="#">
+                    <!-- <img src="./../static/images/swdlogo.png" alt="..."> -->
+                </a>
+                <!-- User menu (mobile) -->
+                <div class="navbar-user d-lg-none">
+                    <!-- Dropdown -->
+                    <div class="dropdown">
+                        <!-- Toggle -->
+                        <a href="#" id="sidebarAvatar" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <div class="avatar-parent-child">
+                                <img alt="Image Placeholder"
+                                    src="https://images.unsplash.com/photo-1548142813-c348350df52b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
+                                    class="avatar avatar- rounded-circle">
+                                <span class="avatar-child avatar-badge bg-success"></span>
+                            </div>
+                        </a>
+                        <!-- Menu -->
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="sidebarAvatar">
+                            <a href="#" class="dropdown-item">Profile</a>
+                            <a href="#" class="dropdown-item">Settings</a>
+                            <a href="#" class="dropdown-item">Billing</a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">Logout</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Collapse -->
+                <div class="collapse navbar-collapse" id="sidebarCollapse">
+                    <!-- Navigation -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'vdashboard' %}">
+                                <i class="bi bi-house"></i> Dashboard
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'vresetpass' %}" method="GET">
+                                <i class="bi bi-person-square"></i>Edit profile
+                            </a>
+                        </li>
+
+
+                    </ul>
+                    <!-- Divider -->
+                    <hr class="navbar-divider my-5 opacity-20">
+                    <!-- Navigation -->
+
+                    <!-- Push content down -->
+                    <div class="mt-auto"></div>
+                    <!-- User (md) -->
+                    <ul class="navbar-nav">
+                        <!-- <li class="nav-item">
+                      <a class="nav-link" href="#">
+                          <i class="bi bi-person-square"></i> Account
+                      </a>
+                  </li> -->
+                        <form action="{% url 'logout' %}" method="post">
+                            {% csrf_token %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="bi bi-box-arrow-left"></i>
+                                    <input class="text text-capitalize" style="background: #fff;" type="submit"
+                                        value="Logout" />
+                                </a>
+                            </li>
+                        </form>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Main content -->
+        <div class="h-screen flex-grow-1 overflow-y-lg-auto">
+            <!-- Header -->
+            <header class="bg-surface-primary border-bottom pt-6">
+                <div class="container-fluid">
+                    <div class="mb-npx">
+                        <div class="row align-items-center">
+                            <div class="col-sm-6 col-12 mb-4 mb-sm-0">
+                                <!-- Title -->
+                                <h1 class="h2 mb-0 ls-tight">Logged in as Volunteer {{request.user}}</h1>
+                            </div>
+                            <!-- Actions -->
+                            <div class="col-sm-6 col-12 text-sm-end">
+                                <div class="mx-n1">
+                                    <a href="#" class="btn d-inline-flex btn-sm btn-neutral border-base mx-1">
+                                        <span class=" pe-2">
+                                            <i class="bi bi-pencil"></i>
+                                        </span>
+                                        <span>Edit</span>
+                                    </a>
+                                    <a href="" class="btn d-inline-flex btn-sm btn-primary mx-1">
+                                        <span class=" pe-2">
+                                            <i class="bi bi-plus"></i>
+                                        </span>
+                                        <span>Register For Event</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Nav -->
+                        <ul class="nav nav-tabs mt-4 overflow-x border-0">
+
+            </header>
+            <!-- Main -->
+            <main class="py-6 bg-surface-secondary">
+                <div class="container-fluid">
+
+                    {% block vcontent %}
+                    {% if obj.submitted == True %}
+                    <h3>
+                        {% if obj.verified == True %}
+                        <h5 class="verify">Congratulations!!!!!Your form has been verified</h5>
+                        {% else %}
+                        <b>
+                            <h5 class="notverify">Your form has not been verified yet</h5>
+                        </b>
+                        {% endif%}
+
+                        <form action="index.html" method="post">
+
+                            <h5 class="once">You can submit form only once!!</h5>
+
+                            <fieldset>
+
+                                <!-- <legend><span class="number">1</span> Your basic info</legend> -->
+
+                                <label for="name">Name:</label>
+                                <input type="text" id="name" name="user_name" value={{obj.Name}} fieldset
+                                    disabled="disabled">
+
+                                <label for="mail">Email:</label>
+                                <input type="email" id="mail" name="user_email" value={{obj.email}} fieldset
+                                    disabled="disabled">
+
+                                <label for="name">Gender:</label>
+                                <input type="text" id="name" name="user_name" value={{obj.gender}} fieldset
+                                    disabled="disabled">
+
+                                <label for="name">activity:</label>
+                                <input type="text" id="name" name="user_name" value={{obj.activity}} fieldset
+                                    disabled="disabled">
+
+                                <label for="name">dept:</label>
+                                <input type="text" id="name" name="user_name" value={{obj.dept}} fieldset
+                                    disabled="disabled">
+
+                                <label for="name">academic_year:</label>
+                                <input type="text" id="name" name="user_name" value={{obj.academic_year}} fieldset
+                                    disabled="disabled">
+
+                                <label for="name">module:</label>
+                                <input type="text" id="name" name="user_name" value={{obj.module}} fieldset
+                                    disabled="disabled">
+
+
+                                <label for="name">Div</label>
+                                <input type="text" id="name" name="user_name" value={{obj.div}} fieldset
+                                    disabled="disabled">
+
+                                <!-- <label for="name">module:</label>
+                                                <input type="text" id="name" name="user_name" value={{obj.module}}
+                                                    fieldset disabled="disabled"> -->
+
+
+                                <label for="name">Current address:</label>
+                                <input type="text" id="name" name="user_name" value={{obj.current_add}} fieldset
+                                    disabled="disabled">
+
+
+                                <label for="name">prn:</label>
+                                <input type="text" id="name" name="user_name" value={{obj.prn}} fieldset
+                                    disabled="disabled">
+
+
+
+                                <label for="name">roll:</label>
+                                <input type="text" id="name" name="user_name" value={{obj.roll}} fieldset
+                                    disabled="disabled">
+
+
+                                <label for="name">contact_num:</label>
+                                <input type="text" id="name" name="user_name" value={{obj.contact_num}} fieldset
+                                    disabled="disabled">
+
+
+                                <!-- <label for="name">Verified:</label>
+                                                <input type="text" id="name" name="user_name" value={{obj.verified}}
+                                                    fieldset disabled="disabled"> -->
+
+                                <label for="name">Objective_of_the_Activity:</label>
+                                <input type="text" id="name" name="user_name" value={{obj.Objective_of_the_Activity}}
+                                    fieldset disabled="disabled">
+
+                                <label for="name">Description_of_the_Activity:</label>
+                                <input type="text" id="name" name="user_name" value={{obj.Description_of_the_Activity}}
+                                    fieldset disabled="disabled">
+
+
+                                <label for="name">Benefits_to_Society:</label>
+                                <input type="text" id="name" name="user_name" value={{obj.Benefits_to_Society}} fieldset
+                                    disabled="disabled">
+
+
+                                <label for="name">Benefits_to_Self:</label>
+                                <input type="text" id="name" name="user_name" value={{obj.Benefits_to_Self}} fieldset
+                                    disabled=disabled">
+
+
+                                <label for="name">Learning_Experiences_challenges:</label>
+                                <input type="text" id="name" name="user_name"
+                                    value={{obj.Learning_Experiences_challenges}} fieldset disabled="disabled">
+
+                                <label for="name">How_did_it_help_you_to_shape_your_Empathy:</label>
+                                <input type="text" id="name" name="user_name"
+                                    value={{obj.How_did_it_help_you_to_shape_your_Empathy}} fieldset
+                                    disabled="disabled">
+
+
+
+                                <label for="name">Cordinator:</label>
+                                <input type="text" id="name" name="user_name" value={{Cordinator}} fieldset
+                                    disabled="disabled">
+
+
+
+                            </fieldset>
+                            <!-- button not applied -->
+                            <!-- <button type="submit">Sign Up</button> -->
+
+
+
+                        </form>
+
+                    </h3>
+
+                    {% else %}
+                    <div class="container">
+
+                        <form id="survey-form" action="{% url 'vdashboard' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="comment">Objective of the Activity (Minimum 50
+                                    Words)</label>
+                                <textarea id="comment" class="input-textarea" name="quest1"
+                                    placeholder="Enter your answer here..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="comment">Description of the Activity (Minimum 100
+                                    words)</label>
+                                <textarea id="comment" class="input-textarea" name="quest2"
+                                    placeholder="Enter your answer here..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="comment">Benefits to Society (Minimum 100 words)</label>
+                                <textarea id="comment" class="input-textarea" name="quest3"
+                                    placeholder="Enter your answer here..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="comment">Benefits to Self (Minimum 100 Words)</label>
+                                <textarea id="comment" class="input-textarea" name="quest4"
+                                    placeholder="Enter your answer here..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="comment">Learning, Experiences, challenges that you want to
+                                    share (Minimum
+                                    100
+                                    words)</label>
+                                <textarea id="comment" class="input-textarea" name="quest5"
+                                    placeholder="Enter your answer here..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="comment">How did it help you to shape your Empathy (Minimum
+                                    50
+                                    words)</label>
+                                <textarea id="comment" class="input-textarea" name="quest6"
+                                    placeholder="Enter your answer here..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="url">Enter your drive link</label>
+                                <textarea id="url" class="input-textarea" name="quest7"
+                                    placeholder="Enter your drive link url"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Coordinator name</label>
+                                <select id="dropdown" name="Cord" class="form-control" required>
+                                    <option disabled selected value>Select your Coordinator name
+                                    </option>
+                                    {% for c in coord %}
+                                    <option value="{{c.cname}}">{{c.cname}}</option>
+                                    {% endfor %}
+
+                                </select>
+                            </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" id="submit" class="submit-button">Submit</button>
+                    </div>
+                    </form>
+                </div>
+
+                {% endif%}
+
+
+                {% endblock vcontent %}
+        </div>
+        </main>
+    </div>
+    </div>
+</body>
+
+</html>
